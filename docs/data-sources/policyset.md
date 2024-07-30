@@ -148,8 +148,8 @@ Optional:
 
 Required:
 
-- `name` (String) The name of the @decorator, eg. @advice()
-- `value` (String) The value of the @decorator, eg. @advice(value)
+- `name` (String) The name of the annotation. For example, if the name is 'advice' the rendered annotation will be '@advice()'.
+- `value` (String) The value of the annotation. For example, if the name is 'advice' and the value is 'test' the rendered annotation will be '@advice("test")'.
 
 
 <a id="nestedatt--policy--principal"></a>
@@ -193,7 +193,7 @@ Optional:
 
 Required:
 
-- `text` (String) unless can be used with the text attribute to define the when clause in plain-text.
+- `text` (String) The 'unless' condition as a string. For example, 'resource.is_private || principal in Group::"Restricted"'
 
 
 <a id="nestedblock--policy--when"></a>
@@ -201,4 +201,4 @@ Required:
 
 Required:
 
-- `text` (String) when can be used with the text attribute to define the when clause in plain-text.
+- `text` (String) The 'when' condition as a string. For example, 'resource.is_public && principal in Group::"Example"'
