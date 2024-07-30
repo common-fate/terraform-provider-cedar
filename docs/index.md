@@ -4,7 +4,7 @@ description: |-
   The Cedar provider is used to configure Cedar authorization policies.
 ---
 
-This provider exposes a Terraform Data Source for authoring Cedar policies:
+This provider exposes a Terraform Data Source for authoring [Cedar](https://cedarpolicy.com) policies:
 
 ```terraform
 data "cedar_policyset" "example" {
@@ -46,6 +46,6 @@ unless {
 };
 ```
 
-For more information, read the [Cedar documentation](https://docs.commonfate.io).
+For more information, read the [Cedar documentation](https://docs.cedarpolicy.com).
 
 This Terraform provider was created by [Common Fate](https://commonfate.io). We've built an access management platform based on Cedar. [Read our documentation](https://docs.commonfate.io) or [get in touch](mailto:hello@commonfate.io) if you'd like to learn more.
