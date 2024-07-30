@@ -66,11 +66,11 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							Optional:            true,
 							Attributes: map[string]schema.Attribute{
 								"name": schema.StringAttribute{
-									Description: "The name of the @decorator, eg. @advice()",
+									Description: "The name of the annotation. For example, if the name is 'advice' the rendered annotation will be '@advice()'.",
 									Required:    true,
 								},
 								"value": schema.StringAttribute{
-									Description: "The value of the @decorator, eg. @advice(value)",
+									Description: "The value of the annotation. For example, if the name is 'advice' and the value is 'test' the rendered annotation will be '@advice(\"test\")'.",
 									Required:    true,
 								},
 							},
@@ -141,7 +141,7 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							NestedObject: schema.NestedBlockObject{
 								Attributes: map[string]schema.Attribute{
 									"text": schema.StringAttribute{
-										MarkdownDescription: "when can be used with the text attribute to define the when clause in plain-text.",
+										MarkdownDescription: "The 'when' condition as a string. For example, 'resource.is_public && principal in Group::\"Example\"'",
 										Required:            true,
 									},
 								},
@@ -154,7 +154,7 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							NestedObject: schema.NestedBlockObject{
 								Attributes: map[string]schema.Attribute{
 									"text": schema.StringAttribute{
-										MarkdownDescription: "unless can be used with the text attribute to define the when clause in plain-text.",
+										MarkdownDescription: "The 'unless' condition as a string. For example, 'resource.is_private || principal in Group::\"Restricted\"'",
 										Required:            true,
 									},
 								},
