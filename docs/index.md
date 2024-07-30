@@ -27,6 +27,7 @@ data "cedar_policyset" "example" {
     unless {
       text = "resource.owner == User::"alice"
     }
+  }
 }
 ```
 
