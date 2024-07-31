@@ -61,20 +61,6 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							MarkdownDescription: "Must be either 'permit' or 'forbid'.",
 							Required:            true,
 						},
-						"annotation": schema.SingleNestedAttribute{
-							MarkdownDescription: "Additional application-specific metadata attached to Cedar policies.",
-							Optional:            true,
-							Attributes: map[string]schema.Attribute{
-								"name": schema.StringAttribute{
-									Description: "The name of the annotation. For example, if the name is 'advice' the rendered annotation will be '@advice()'.",
-									Required:    true,
-								},
-								"value": schema.StringAttribute{
-									Description: "The value of the annotation. For example, if the name is 'advice' and the value is 'test' the rendered annotation will be '@advice(\"test\")'.",
-									Required:    true,
-								},
-							},
-						},
 						"any_principal": schema.BoolAttribute{
 							MarkdownDescription: "Specifies the principal component of the policy scope. Matches all principals. Equivalent to writing 'principal'",
 							Optional:            true,
@@ -135,6 +121,22 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 						},
 					},
 					Blocks: map[string]schema.Block{
+						"annotation": schema.ListNestedBlock{
+							MarkdownDescription: "Additional application-specific metadata attached to Cedar policies.",
+							NestedObject: schema.NestedBlockObject{
+								Attributes: map[string]schema.Attribute{
+									"name": schema.StringAttribute{
+										Description: "The name of the annotation. For example, if the name is 'advice' the rendered annotation will be '@advice()'.",
+										Required:    true,
+									},
+									"value": schema.StringAttribute{
+										Description: "The value of the annotation. For example, if the name is 'advice' and the value is 'test' the rendered annotation will be '@advice(\"test\")'.",
+										Required:    true,
+									},
+								},
+							},
+						},
+
 						"when": schema.ListNestedBlock{
 							MarkdownDescription: "Defines additional conditions under which the policy applies. The 'when' block must evaluate to true, otherwise the policy does not apply.",
 

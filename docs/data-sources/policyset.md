@@ -112,7 +112,7 @@ Optional:
 
 - `action` (Object) Specifies the action component of the policy scope. Equivalent to writing 'action ==' (see [below for nested schema](#nestedatt--policy--action))
 - `action_in` (List of Object) Specifies the action component of the policy scope. Equivalent to writing 'action in' (see [below for nested schema](#nestedatt--policy--action_in))
-- `annotation` (Attributes) Additional application-specific metadata attached to Cedar policies. (see [below for nested schema](#nestedatt--policy--annotation))
+- `annotation` (Block List) Additional application-specific metadata attached to Cedar policies. (see [below for nested schema](#nestedblock--policy--annotation))
 - `any_action` (Boolean) Specifies the action component of the policy scope. Matches all actions. Equivalent to writing 'action'
 - `any_principal` (Boolean) Specifies the principal component of the policy scope. Matches all principals. Equivalent to writing 'principal'
 - `any_resource` (Boolean) Specifies the resource component of the policy scope. Matches all resources. Equivalent to writing 'resource'
@@ -143,7 +143,7 @@ Optional:
 - `type` (String)
 
 
-<a id="nestedatt--policy--annotation"></a>
+<a id="nestedblock--policy--annotation"></a>
 ### Nested Schema for `policy.annotation`
 
 Required:
