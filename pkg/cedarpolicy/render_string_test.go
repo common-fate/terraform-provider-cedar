@@ -139,11 +139,9 @@ unless {
 			name: "principal_action_resource_in",
 			policy: Policy{
 				Effect: types.StringValue("permit"),
-				PrincipalIn: &[]eid.EID{
-					{
-						Type: types.StringValue("CF::User"),
-						ID:   types.StringValue("user1"),
-					},
+				PrincipalIn: &eid.EID{
+					Type: types.StringValue("CF::User"),
+					ID:   types.StringValue("user1"),
 				},
 
 				ActionIn: &[]eid.EID{
@@ -153,32 +151,24 @@ unless {
 					},
 				},
 
-				ResourceIn: &[]eid.EID{
-					{
-						Type: types.StringValue("Test::Vault"),
-						ID:   types.StringValue("test1"),
-					},
+				ResourceIn: &eid.EID{
+					Type: types.StringValue("Test::Vault"),
+					ID:   types.StringValue("test1"),
 				},
 			},
 			want: `permit (
-	principal in [CF::User::"user1"],
+	principal in CF::User::"user1",
 	action in [Action::Access::"Request"],
-	resource in [Test::Vault::"test1"]
+	resource in Test::Vault::"test1"
 );`,
 		},
 		{
 			name: "in_condition_multiple_values",
 			policy: Policy{
 				Effect: types.StringValue("permit"),
-				PrincipalIn: &[]eid.EID{
-					{
-						Type: types.StringValue("CF::User"),
-						ID:   types.StringValue("user1"),
-					},
-					{
-						Type: types.StringValue("CF::User"),
-						ID:   types.StringValue("user2"),
-					},
+				PrincipalIn: &eid.EID{
+					Type: types.StringValue("CF::User"),
+					ID:   types.StringValue("user1"),
 				},
 
 				ActionIn: &[]eid.EID{
@@ -192,21 +182,15 @@ unless {
 					},
 				},
 
-				ResourceIn: &[]eid.EID{
-					{
-						Type: types.StringValue("Test::Vault"),
-						ID:   types.StringValue("test1"),
-					},
-					{
-						Type: types.StringValue("Test::Vault"),
-						ID:   types.StringValue("test2"),
-					},
+				ResourceIn: &eid.EID{
+					Type: types.StringValue("Test::Vault"),
+					ID:   types.StringValue("test1"),
 				},
 			},
 			want: `permit (
-	principal in [CF::User::"user1", CF::User::"user2"],
+	principal in CF::User::"user1",
 	action in [Action::Access::"Request", Action::Access::"Close"],
-	resource in [Test::Vault::"test1", Test::Vault::"test2"]
+	resource in Test::Vault::"test1"
 );`,
 		},
 		{

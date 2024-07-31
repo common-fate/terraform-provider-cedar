@@ -71,3 +71,44 @@ func TestPolicyDataSource_Annotations(t *testing.T) {
 		},
 	})
 }
+
+func TestPolicyDataSource_InOperator(t *testing.T) {
+	resource.UnitTest(t, resource.TestCase{
+		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
+			tfversion.SkipBelow(tfversion.Version1_5_0),
+		},
+		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: `
+				data "cedar_policyset" "test" {
+					policy {
+						effect = "permit"
+						principal_in = {
+							type = "Group"
+							id = "test"
+						}
+						action_in = [
+							{
+								type = "Action"
+								id = "Read"
+							}
+						]
+						resource_in = {
+							type = "Folder"
+							id = "example"
+						}
+					}
+				}
+
+				output "test" {
+					value = data.cedar_policyset.test.text
+				}
+				`,
+				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckOutput("test", "permit (\n\tprincipal in Group::\"test\",\n\taction in [Action::\"Read\"],\n\tresource in Folder::\"example\"\n);\n"),
+				),
+			},
+		},
+	})
+}

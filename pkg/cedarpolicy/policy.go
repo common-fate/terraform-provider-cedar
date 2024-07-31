@@ -20,7 +20,7 @@ type Policy struct {
 
 	AnyPrincipal types.Bool   `tfsdk:"any_principal"`
 	Principal    *eid.EID     `tfsdk:"principal"`
-	PrincipalIn  *[]eid.EID   `tfsdk:"principal_in"`
+	PrincipalIn  *eid.EID     `tfsdk:"principal_in"`
 	PrincipalIs  types.String `tfsdk:"principal_is"`
 
 	AnyAction types.Bool `tfsdk:"any_action"`
@@ -29,7 +29,7 @@ type Policy struct {
 
 	AnyResource types.Bool   `tfsdk:"any_resource"`
 	Resource    *eid.EID     `tfsdk:"resource"`
-	ResourceIn  *[]eid.EID   `tfsdk:"resource_in"`
+	ResourceIn  *eid.EID     `tfsdk:"resource_in"`
 	ResourceIs  types.String `tfsdk:"resource_is"`
 
 	When   []Condition `tfsdk:"when"`

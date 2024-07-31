@@ -74,12 +74,10 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							MarkdownDescription: "Specifies the principal component of the policy scope. Equivalent to writing 'principal in'",
 							Optional:            true,
 						},
-						"principal_in": schema.ListAttribute{
+						"principal_in": schema.ObjectAttribute{
 							MarkdownDescription: "Specifies the principal component of the policy scope. Equivalent to writing 'principal =='",
 							Optional:            true,
-							ElementType: basetypes.ObjectType{
-								AttrTypes: eid.EIDAttrsForDataSource,
-							},
+							AttributeTypes:      eid.EIDAttrsForDataSource,
 						},
 
 						"any_action": schema.BoolAttribute{
@@ -112,12 +110,10 @@ You may also optionally provide one or more 'when' and 'unless' conditions as bl
 							MarkdownDescription: "Specifies the resource component of the policy scope. Equivalent to writing 'resource is'",
 							Optional:            true,
 						},
-						"resource_in": schema.ListAttribute{
+						"resource_in": schema.ObjectAttribute{
 							MarkdownDescription: "Specifies the resource component of the policy scope. Equivalent to writing 'resource in'",
 							Optional:            true,
-							ElementType: basetypes.ObjectType{
-								AttrTypes: eid.EIDAttrsForDataSource,
-							},
+							AttributeTypes:      eid.EIDAttrsForDataSource,
 						},
 					},
 					Blocks: map[string]schema.Block{
