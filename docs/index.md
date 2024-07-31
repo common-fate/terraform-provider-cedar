@@ -25,7 +25,7 @@ data "cedar_policyset" "example" {
       text = "resource.is_public"
     }
     unless {
-      text = "resource.owner == User::"alice"
+      text = "resource.owner == User::\"alice\""
     }
   }
 }
