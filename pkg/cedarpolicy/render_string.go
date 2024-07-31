@@ -53,24 +53,19 @@ func (p Policy) RenderString() (string, error) {
 		line := fmt.Sprintf("\tprincipal == %s::%q,", principalType, principalID)
 		output = append(output, line)
 	} else if p.PrincipalIn != nil {
-		// principal == [<entity>, <entity>],
+		// principal in <entity>,
 
-		entities := make([]string, len(*p.PrincipalIn))
+		typ := p.PrincipalIn.Type.ValueString()
+		id := p.PrincipalIn.ID.ValueString()
 
-		for i, ent := range *p.PrincipalIn {
-			typ := ent.Type.ValueString()
-			id := ent.ID.ValueString()
-
-			if typ == "" {
-				return "", fmt.Errorf("principal_in entry %v: type must be specified", i)
-			}
-			if id == "" {
-				return "", fmt.Errorf("principal_in entry %v: ID must be specified", i)
-			}
-			entities[i] = fmt.Sprintf(`%s::"%s"`, typ, id)
+		if typ == "" {
+			return "", fmt.Errorf("principal_in: type must be specified")
+		}
+		if id == "" {
+			return "", fmt.Errorf("principal_in: ID must be specified")
 		}
 
-		line := fmt.Sprintf("\tprincipal in [%s],", strings.Join(entities, ", "))
+		line := fmt.Sprintf("\tprincipal in %s::%q,", typ, id)
 		output = append(output, line)
 	} else if p.PrincipalIs.ValueString() != "" {
 		// principal is <entity type>,
@@ -139,24 +134,19 @@ func (p Policy) RenderString() (string, error) {
 		line := fmt.Sprintf("\tresource == %s::%q", resourceType, resourceID)
 		output = append(output, line)
 	} else if p.ResourceIn != nil {
-		// resource == [<entity>, <entity>],
+		// resource in <entity>, <entity>,
 
-		entities := make([]string, len(*p.ResourceIn))
+		typ := p.ResourceIn.Type.ValueString()
+		id := p.ResourceIn.ID.ValueString()
 
-		for i, ent := range *p.ResourceIn {
-			typ := ent.Type.ValueString()
-			id := ent.ID.ValueString()
-
-			if typ == "" {
-				return "", fmt.Errorf("resource_in entry %v: type must be specified", i)
-			}
-			if id == "" {
-				return "", fmt.Errorf("resource_in entry %v: ID must be specified", i)
-			}
-			entities[i] = fmt.Sprintf(`%s::"%s"`, typ, id)
+		if typ == "" {
+			return "", fmt.Errorf("resource_in: type must be specified")
+		}
+		if id == "" {
+			return "", fmt.Errorf("resource_in: ID must be specified")
 		}
 
-		line := fmt.Sprintf("\tresource in [%s]", strings.Join(entities, ", "))
+		line := fmt.Sprintf("\tresource in %s::%q", typ, id)
 		output = append(output, line)
 	} else if p.ResourceIs.ValueString() != "" {
 		// resource is <entity type>,

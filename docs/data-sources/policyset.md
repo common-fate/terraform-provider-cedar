@@ -117,10 +117,10 @@ Optional:
 - `any_principal` (Boolean) Specifies the principal component of the policy scope. Matches all principals. Equivalent to writing 'principal'
 - `any_resource` (Boolean) Specifies the resource component of the policy scope. Matches all resources. Equivalent to writing 'resource'
 - `principal` (Object) Specifies the principal component of the policy scope. Equivalent to writing 'principal ==' (see [below for nested schema](#nestedatt--policy--principal))
-- `principal_in` (List of Object) Specifies the principal component of the policy scope. Equivalent to writing 'principal ==' (see [below for nested schema](#nestedatt--policy--principal_in))
+- `principal_in` (Object) Specifies the principal component of the policy scope. Equivalent to writing 'principal ==' (see [below for nested schema](#nestedatt--policy--principal_in))
 - `principal_is` (String) Specifies the principal component of the policy scope. Equivalent to writing 'principal in'
 - `resource` (Object) Specifies the resource component of the policy scope. Equivalent to writing 'resource ==' (see [below for nested schema](#nestedatt--policy--resource))
-- `resource_in` (List of Object) Specifies the resource component of the policy scope. Equivalent to writing 'resource in' (see [below for nested schema](#nestedatt--policy--resource_in))
+- `resource_in` (Object) Specifies the resource component of the policy scope. Equivalent to writing 'resource in' (see [below for nested schema](#nestedatt--policy--resource_in))
 - `resource_is` (String) Specifies the resource component of the policy scope. Equivalent to writing 'resource is'
 - `unless` (Block List) Defines additional conditions under which the policy applies. The 'when' block must evaluate to true, otherwise the policy does not apply. (see [below for nested schema](#nestedblock--policy--unless))
 - `when` (Block List) Defines additional conditions under which the policy applies. The 'when' block must evaluate to true, otherwise the policy does not apply. (see [below for nested schema](#nestedblock--policy--when))
