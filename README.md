@@ -6,6 +6,7 @@ This provider exposes a Terraform Data Source for authoring [Cedar](https://ceda
 data "cedar_policyset" "example" {
   policy {
     effect = "permit"
+
     annotation {
       name = "advice"
       value = "Allow admins to read public resources unless owned by Alice"
