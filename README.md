@@ -7,6 +7,11 @@ data "cedar_policyset" "example" {
   policy {
     effect = "permit"
 
+    annotation {
+      name = "advice"
+      value = "Allow admins to read public resources unless owned by Alice"
+    }
+
     principal_in = {
       type = "Group"
       id   = "admins"
@@ -30,6 +35,7 @@ data "cedar_policyset" "example" {
 The `data.cedar_policyset.example.text` output will be:
 
 ```
+@advice("Allow admins to read public resources unless owned by Alice")
 permit (
     principal in Group::"admins",
     action == Action::"Read",
