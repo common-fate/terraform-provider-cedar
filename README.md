@@ -6,6 +6,10 @@ This provider exposes a Terraform Data Source for authoring [Cedar](https://ceda
 data "cedar_policyset" "example" {
   policy {
     effect = "permit"
+    annotation {
+      name = "advice"
+      value = "Allow admins to read public resources unless owned by Alice"
+    }
 
     principal_in = {
       type = "Group"
@@ -30,6 +34,7 @@ data "cedar_policyset" "example" {
 The `data.cedar_policyset.example.text` output will be:
 
 ```
+@advice("Allow admins to read public resources unless owned by Alice")
 permit (
     principal in Group::"admins",
     action == Action::"Read",
@@ -57,7 +62,7 @@ To generate or update documentation, run `go generate`.
 
 In order to run the full suite of Acceptance tests, run `make testacc`.
 
-*Note:* Acceptance tests create real resources, and often cost money to run.
+_Note:_ Acceptance tests create real resources, and often cost money to run.
 
 ```shell
 make testacc
